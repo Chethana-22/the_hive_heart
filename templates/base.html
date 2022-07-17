@@ -1,0 +1,138 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+   
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    
+
+    <title>Art Gallery</title>
+
+
+    {% block cssfiles %}
+    
+    {% endblock cssfiles %}
+   
+
+</head>
+
+<body>
+
+        <!-- navigator bar-->
+        <nav class="navbar">
+            <div class="navbar_container">
+                <a href="#home" id="navbar_logo">The Hive Heart</a>
+                <div class="navbar_toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="navbar_menu">
+                    <li class="navbar_item">
+                        <a href="{% url 'Home-Page' %}" class="navbar_links" id="home-page">Home</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="{% url 'About-Page' %}" class="navbar_links" id="about-page">About</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="{% url 'Contact-Page' %}" class="navbar_links" id="services-page">Contact us</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="{% url 'cart:order-summary' %}" class="navbar_links" id="login-page">Cart</a>
+                    </li>
+                    
+                    {% if request.user.is_authenticated %}
+
+                    {% if request.user.is_superuser %}
+                    <li class="navbar_item">
+                        <a href="admin/gallery/painting/add/" class="navbar_links" id="Sign-Up" style="color: grey;">Hello {{request.user.username}}</a>
+                    </li>
+                    {% else %}
+                    <li class="navbar_item">
+                        <a href="" class="navbar_links" id="Sign-Up" style="color: grey;">Hello {{request.user.username}}</a>
+                    </li>
+                    {% endif %}
+                    <li class="navbar_item">
+                        <a href="{% url 'Logout-Page' %}" class="navbar_links" id="login-page">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="navbar_item">
+                        <a href="{% url 'Sign-Up' %}" class="navbar_links" id="Sign-Up">Sign Up</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="{% url 'Login-Page' %}" class="navbar_links" id="login-page">Login</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+    
+    
+            </div>
+        </nav>
+
+        
+
+
+
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+
+
+
+
+
+    
+    <div class="container">
+        <footer class="container">
+            <p class="float-end"><a href="#">Back to top</a></p>
+            <p>© 2022 The Hive Heart, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        </footer>
+    </div>
+
+
+    
+    {% block script %}
+          
+     <script  src="{% static 'script.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+    {% endblock script %}
+
+</body>
+
+</html>
